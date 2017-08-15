@@ -1,0 +1,46 @@
+body {
+  padding: 0;
+  margin: 0;
+  font: 85% /1.4em arial;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#container {
+  width: 100%;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  text-align: center;
+  clear: both;
+}
+
+.cell {
+  width: 32px;
+  height: 32px;
+  border: 1px solid red;
+  display: inline-block;
+  opacity: 0;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.cell.active {
+    opacity: 1;
+  }
+
+#health-container {
+  width: 100%;
+}
+
+#health-container div {
+    width: 50%;
+  }
+#health-container #you {
+    float: left;
+  }
+#health-container #them {
+    float: right;
+  }
