@@ -1,104 +1,24 @@
-function shuffle(array) {
-	var currentIndex = array.length, temporaryValue, randomIndex;
-
-	// While there remain elements to shuffle...
-	while (0 !== currentIndex) {
-
-		// Pick a remaining element...
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex -= 1;
-
-		// And swap it with the current element.
-		temporaryValue = array[currentIndex];
-		array[currentIndex] = array[randomIndex];
-		array[randomIndex] = temporaryValue;
-	}
-
-	return array;
-}
-
-///
-class Symbol {
-
-	constructor(n) {
-		this.n = n;
-		this.el = document.createElement('div');
-		this.el.classList.add('cell');
-		this.el.innerHTML = n;
-	}
-
-	hide() {
-		this.el.classList.remove('active');
-	}
-
-	show() {
-		this.el.classList.add('active');
-	}
-
-}
-
-///
 /*
-the process:
-Symbol are better than numbers for processing, more fun too if it's a game. Could even use arrows and / or buttons from keyboard.
+Test scene:
+So to prototype the idea I would like a simple system of sending the hero away, and returning with a success or failure.
 */
-let cont = document.getElementById('container');
-let fixedMembers = [];
+let app = new Application();
 
-for (let i = 0; i < 5; i++) {
-	fixedMembers.push(new Symbol(i));
-	cont.appendChild(fixedMembers[i].el);
-}
-
-/// Generate the sequence
-let seq = fixedMembers.map(x => x.n);
-
-// Make it happen
-let inc = 0;
-let sequenceRunning = false;
-
-function playSequence() {
-
-	if (inc > fixedMembers.length - 1) {
-		sequenceRunning = false;
-		inc = 0;
-		return;
-	} else {
-		sequenceRunning = true;
-	}
-
-	fixedMembers[seq[inc]].show();
-
-	setTimeout(function () {
-
-		fixedMembers[seq[inc]].hide();
-		inc += 1;
-
-		playSequence();
-
-	}, 250);
-
-}
-
-function checkSequence() {
-
-	// ...
-
-}
-
-//...
-document.getElementById('start').addEventListener('click', function () {
-
-	if (sequenceRunning)
-		return;
-
-	// Shuffle it
-	seq = shuffle(seq);
-
-	// Do it
-	playSequence();
-
+let sendButton = document.getElementById("send");
+sendButton.addEventListener('click', function() {
+  app.send(aQuest); // This wont always be the case. It's just for testing.
 });
+
+let healButton = document.getElementById("heal");
+healButton.addEventListener('click', function(){
+	app.heal();
+});
+
+let trainButton = document.getElementById("train");
+trainButton.addEventListener('click', function(){
+	app.train();
+});
+
 
 // https://github.com/lostdecade/simple_canvas_game
 // Create the canvas
